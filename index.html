@@ -1,0 +1,428 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>All About that Git</title>
+    <link rel="stylesheet" href="node_modules/reveal/index.css" />
+    <link rel="stylesheet" href="node_modules/reveal/theme/night.css" />
+    <link rel="stylesheet" href="shame.css" />
+</head>
+<body>
+    <div class="reveal">
+        <div class="slides">
+            <section>
+                <h1>All About That Git</h1>
+                <img class="git-logo" src="https://git-scm.com/images/logos/downloads/Git-Logo-White.png" />
+            </section>
+            <section>
+                <section>
+                    <h2>Terminology</h2>
+                    <p>Git has a lot of terms that might seem confusing&hellip;</p>
+                    <div class="fragment fade-up term-list">
+                        <ul>
+                            <li>Commit</li>
+                            <li>Rebase</li>
+                            <li>Pull</li>
+                            <li>Divergence</li>
+                        </ul>
+                        <ul>
+                            <li>Remote</li>
+                            <li>Origin</li>
+                            <li>Merge</li>
+                            <li>HEAD</li>
+                        </ul>
+                    </div>
+                </section>
+                <section>
+                    <h3>Commit</h3>
+                    <div class="flex">
+                        <div class="fragment">
+                            <h4>What a commit <em>isn't&hellip;</em></h4>
+                            <ul>
+                                <li class="fragment">A save of the entire file</li>
+                                <li class="fragment">Available immediately</li>
+                            </ul>
+                        </div>
+                        <div class="fragment">
+                            <h4>What a commit <strong>is&hellip;</strong></h4>
+                            <ul>
+                                <li class="fragment">A collection of changes</li>
+                                <li class="fragment">A snapshot of time</li>
+                                <li class="fragment">Local to <em>your</em> repository</li>
+                        </div>
+                    </div>
+                    <br />
+                    <div class="fragment">
+                        <p>You will often see a special commit mentioned referred to as HEAD. The HEAD is the last commit you made or checked out to.</p>
+                    </div>
+                </section>
+                <section>
+                    <h3>Merge</h3>
+                    <p class="fragment">Similar to a rebase: joins the commits of two branches together</p>
+                    <div class="fragment">
+                        <p style="white-space: nowrap">A <strong>merge</strong> creates a <em>new commit</em> that is the
+                        union of two branches of work.</p>
+                        <img style="background: #fff" src="http://blogs.atlassian.com/wp-content/uploads/git-merges-strat1.png" />
+                    </div>
+                </section>
+                <section data-transition="fade-in">
+                    <h3>Rebasing</h3>
+                    <p>Similar to a merge: joins the commits of two branches together</p>
+                    <div>
+                        <p>A <strong>rebase</strong> <em>replays</em> your commits over another branch. It 
+                        effectively rewinds time, gets the target branch and then plays your commits after it.</p>
+                        <img style="background: #fff" src="http://rypress.com/tutorials/git/media/5-1.png" />
+                    </div>
+                </section>
+                <section>
+                    <h3>Push and Pull</h3>
+                    <p>The repository you work on is isolated, nothing syncs with the server until you say so!</p>
+                    <hr />
+                    <p><strong>PULL</strong> other peoples' changes from the central repository</p>
+                    <p><strong>PUSH</strong> your changes to make them available to everyone else</p>
+                </section>
+                <section>
+                    <h3>Divergence and Conflicts</h3>
+                    <strong>Commits are sequential - every commit knows it's ancestor</strong>
+                    <p>When pulling from the server, if your commits and the server's commits have a different
+                        ancestry, your branch is said to have <em>diverged.</em></p>
+                    <p>Divergences are resolved by merging or rebasing.</p>
+                    <hr />
+                    <p>If git cannot reasonably calculate how to combine two commits during a merge or rebase,
+                        you will get a <em>conflict</em>. These require human intervention!</p>
+                </section>
+                <section>
+                    <h3>Remotes &amp; Origin</h3>
+                    <p>A remote is simply the remote "central" server all local repositories sync against.</p>
+
+                    <p>The primary remote is conventionally known as <em>origin</em>. In our case, our origin is VSTS.
+                    It is possible to have multiple origins, but that is beyond the scope of this presentation.</p>
+                </section>
+            </section>
+            <section>
+                <section>
+                    <h2>Branching</h2>
+                    <img src="https://confluence.atlassian.com/bitbucketserver/files/776639968/776639991/2/1444173189082/branching.png" />
+                </section>
+                <section>
+                    <h3>How to branch</h3>
+                    <ul class="with-blobs">
+                        <li class="fragment">Contain a single unit of work</li>
+                        <li class="fragment">No larger than one story</li>
+                        <li class="fragment">No smaller than one task</li>
+                        <li class="fragment">Named appropriately</li>
+                        <ul>
+                            <li class="fragment"><code>{type}/{work item}{_description?}</code></li>
+                            <ul class="fragment">
+                                <li><code>feature/1234</code></li>
+                                <li><code>bugfix/1234</code></li>
+                                <li><code>feature/1234_implement_all_the_things</code></li>
+                                <li><code>bugfix/1234_fix_all_the_things</code></li>
+                            </ul>
+                            <li class="fragment">Utility branches can be named whatever you like!</li>
+                    </ul>
+                </section>
+            </section>
+            <section>
+                <section>
+                    <h2>Working within git</h2>
+                    <div class="flex space-around">
+                        <img src="https://scientificbsides.files.wordpress.com/2015/12/in-case-of-fire-1-git-commit-2-git-push-3-leave-building2.png?w=350&h=200&crop=1" />
+                        <img src="https://pbs.twimg.com/media/CT_hMKKWIAA_LPf.png" />
+                    </div>
+                    <p>Some best practices for working and gitting harmoniously&hellip;</p>
+                </section>
+                <section>
+                    <h3>Golden Rule Number 1</h3>
+                    <p class="golden-rule"><span class="fragment">Commit early</span><span class="fragment">, Commit often!</span></p>
+                </section>
+                <section>
+                    <h3>Why?</h3>
+                    <div class="flex space-around">
+                      <ul class="with-blobs">
+                          <li class="fragment">Easier to retrace steps</li>
+                          <li class="fragment">Less damaging <code>revert</code></li>
+                      </ul>
+                      <ul class="with-blobs">
+                          <li class="fragment">Improved code quality from thinking atomically</li>
+                          <li class="fragment">Easier to get feedback</li>
+                      </ul>
+                    </div>
+                    <blockquote class="fragment">
+                        <p>&hellip;having periodic checkpoints means that you can understand how you broke something.
+                        People resist this out of some sense that this is ugly, [...] is confusing to observers, and might lead to accusations of stupidity. </p>
+                        <p class="fragment">Well, I'm here to tell you that resisting this is ignorant.</p>
+                        <p class="fragment">Commit Early And Often.</p>
+                        <footer><cite><a href="https://gist.github.com/SethRobertson/1540906/68feeabfe906ec1eb893e4fa45f402795ed6e62c#commit">Seth Robertson</a></cite></footer>
+                    </blockquote>
+                    <strong class="fragment">Don't be afraid of commitment!</strong>
+                </section>
+                <section>
+                    <h3>Commit Responsibly</h3>
+                    <p>Where possible, commits should be&hellip;</p>
+                    <ul>
+                        <li>Not broken</li>
+                        <li>Atomic</li>
+                        <li>Well named and described</li>
+                        <li>Include a reference to work item(s)</li>
+                    </ul>
+                    <p>Commits should <strong>not</strong> be used to mark the passage of time&hellip;</p>
+                    <p>Do not commit because it's lunch time, or the end of the day etc.</p>
+                </section>
+            </section>
+            <section>
+                    <section>
+                    <h2>Committing</h2>
+                    <img src="http://static5.businessinsider.com/image/504f30a969bedd3d2a000008/rorty.gif" />
+                    </section>
+                    <section>
+                        <h3>Include all work items in your commits</h3>
+                        <code class="fragment">git commit -m "Grids fully sorted now #3285"</code>
+                        <img class="fragment" src="images/commit-work-item.PNG" />
+                    </section>
+                    <section>
+                        <h3>Descriptive commit messages</h3>
+                        <div class="flex space-around">
+                            <div class="fragment">
+                                <h4><span style="color: green; font-size: 3rem">✓</span> Yay </h4>
+                                <pre>
+commit 7eb1f93c171f8688c5596a8972b1fe9870f96171
+Author: Matt Wheatley terrawheat@gmail.com
+Date:   Thu May 26 14:41:33 2016 +0100
+
+fix(Renderer): update signatures to make
+RenderDebugInfo optional
+
+The code does not force the user to provider 
+`RenderDebugInfo`. The current implementation lists
+this as a mandatory parameter. Update the parameter
+to be optional.
+
+Fixes #8466
+                                </pre>
+                            </div>
+                            <div class="fragment">
+                                <h4><span style="color: red; font-size: 3rem">✘</span> Boo</h4>
+                                <pre>
+commit 59fc179c64b8bb3d4822399bcbebdc063604078b
+Author: Keir Covington keir@buyingbutler.com
+Date:   Tue Jan 24 09:33:30 2017 +0000
+
+Grids fully sorted now #3285
+                                </pre>
+                            </div>
+                        </div>
+                        <div class="flex space-around">
+                            <ul>
+                                <li class="fragment">Where?</li>
+                                <li class="fragment">What?</li>
+                                <li class="fragment">Short then long description</li>
+                                <li class="fragment">Message tense</li>
+                            </ul>
+                        </div>
+                    </section>
+            </section>
+            <section>
+                <section>
+                    <h2>Pushing</h2>
+                    <img src="http://www.rockers.de/cover/512/134532a.jpg" />
+                </section>
+                <section>
+                    <h3>Setting the origin</h3>
+                    <br/>
+                    <small class="fragment">If you create your branch through VSTS, skip this step!</small>
+                    <br/>
+                    <p class="fragment">A branch created locally needs to know which remote branch to "track". You need to 
+                        tell git which branch on the server your current branch syncs with.<p>
+                    <br/>
+                    <p class="fragment">SourceTree and other GUIs usually take care of this step.</p>
+                    <br/>
+                    <div class="fragment">
+                      <p>For command line: after you create the branch</p>
+                      <code>git push -u origin {branchName}</code><br/>
+                      <small>Translation: "git push, and set the upstream branch as origin's version of {branchName}"</small><br/>
+                      <small><strong>BEWARE</strong>: Keep your local branch name and remote branch name the same, or you're gonna have a bad time.</small>
+                    </div>
+                </section>
+                <section>
+                    <h3><code>git push</code></h3>
+                    <p>Attempt to push your changes&hellip;</p>
+
+                    <p class="fragment">All being well, your changes are now available for everyone to checkout <strong> on your branch only!</strong>
+                    <br/>
+                    <code class="fragment">
+                        ! [rejected]        master -> master (non-fast forward)<br/>
+                        error: failed to push some refs to 'git@mydomain.com:/repo-git.git'
+                    </code>
+                    <br />
+                    <p class="fragment">Divergence!</p>
+                </section>
+            </section>
+            <section>
+                <section>
+                    <h2>Pull Requests</h2>
+                    <p>PRs are required when a developer feels their work is ready to
+                        be included in master. You are <em style="font-size: 3rem">requesting</em> your changes
+                            be <em style="font-size: 3rem">pull</em>ed in.</p>
+                    <img src="http://vignette4.wikia.nocookie.net/vampirediaries/images/a/a9/I-see-what-you-did-there.jpg/revision/latest?cb=20160224212016" />
+                </section>
+                <section>
+                    <h3>Creating a PR</h3>
+                    <p>It's important to remember that PRs are not a <em>git</em> feature, but most 
+                    git repo providers offer some form of PR system.</p>
+
+                    <div class="flex pr-images">
+                        <img class="fragment" src="images/pr-1.png" />
+                        <img class="fragment" src="images/pr-2.png" />
+                        <img class="fragment" src="images/pr-3.png" />
+                    </div>
+                </section>
+                <section>
+                    <h3>Approval System</h3>
+                    <br/>
+                    <p class="fragment">Approval policy</p>
+                    <ul>
+                        <li class="fragment">At least one reviewer</li>
+                        <li class="fragment">At least one work item linked</li>
+                    </ul>
+                    <hr/>
+                    <p class="fragment">Responsibility of the PR creator to finalise the merge once approved</p>
+                </section>
+                <section>
+                    <h3>Completing a PR</h3>
+                    <img src="images/pr-4.png" style="width: 50%"/>
+                    <ul>
+                        <li class="fragment">Delete if you expect no further work to be done on this branch</li>
+                        <li class="fragment">Do <strong>not</strong> squash merge (at least not for now)</li>
+                    </ul>
+                </section>
+                <section>
+                    <h3>Congratulations!</h3>
+                    <p>Your changes are now part of master. Your code is a permanent part of the repo's history!</p>
+                    <hr/>
+                    <p>Ensure you pull on your local master to retrieve the newly added code.</p>
+                    <img src="https://hackbrightacademy.com/content/uploads/2013/08/git_all_the_things.png" style="width: 40%"/>
+                </section>
+            </section>
+            <section>
+                <section>
+                    <h2>Merge Conflicts</h2>
+                    <br/>
+                    <img src="https://cdn-images-1.medium.com/max/400/1*ezl84iQSMDnfkOipMVHgDw.png"/>
+                    <p class="fragment">Seriously, don't worry about conflicts. They are a perfectly natural part of developing with git.</p>
+                    <p class="fragment">Get comfortable with resolving conflicts and your life in git will be <strong>SO</strong> much better.</p>
+                </section>
+                <section>
+                    <h3>Causes</h3>
+                    <div class="fragment">
+                    <p>Git is surprisingly clever&hellip;</p>
+                    <p>It can automatically resolve a staggering array of conflicts</p>
+                    <p>The most common source of conflicts are whitespace and changes on the same line. These require human intervention.</p>
+                    </div>
+                </section>
+                <section>
+                    <h3>Resolving Conflicts</h3>
+                    <p class="fragment">Get yourself a tool you're comfortable with</p>
+
+                    <p class="fragment">Before continue/committing after a conflict, ensure all conflict markers are gone from conflicting files!</p>
+
+                    <h4 class="fragment">What do conflict markers look like?</h4>
+                    <pre class="fragment">
+                        <<<<<<<<< HEAD
+                          This is my code
+                        =========
+                          This is conflicting code
+                        >>>>>>>>> origin/master
+                    </pre>
+                </section>
+            </section>
+            <section>
+                <section>
+                    <h2>Rebasing</h2>
+                    <br/>
+                    <img src="https://cdn.meme.am/cache/instances/folder907/60353907.jpg" />
+                    <hr/>
+                    <small class="fragment">It sounds scarier than it is&hellip;</small>
+                    <p class="fragment">Interactive rebasing is beyond the scope of this presentation!</p>
+                </section>
+                <section>
+                    <h3>When should I rebase?</h3>
+                    <ol>
+                        <li class="fragment">Just before creating a pull request</li>
+                        <li class="fragment">When master has been updated since the point you branched from it</li>
+                    </ol>
+                    <br/>
+                    <br/>
+                    <h3 class="fragment">Why?</h3>
+                    <p class="fragment">Clean history! Less headache! Be a friendly developer!</p>
+                </section>
+                <section>
+                    <h3>This rebase is disgusting&hellip;</h3>
+                    <p class="fragment">On a branch that's been kicking around for a while, or
+                        on a branch that has previously been merged in to...</p>
+                        <br/>
+                        <pre class="fragment" style="font-size: 3rem">
+Rebasing (1/134)...
+CONFLICT: /c/Code/uh-oh.js
+                        </pre>
+                        <br/>
+                    <p class="fragment">Sometimes you gotta do what you gotta do&hellip;</p>
+                    <strong class="fragment">Where possible, rebase instead of merge!</strong>
+                </section>
+            </section>
+            <section>
+                <section>
+                    <h2>Do's and Don'ts</h2>
+                    <img src="https://i.ytimg.com/vi/ZYuVRrAznq8/hqdefault.jpg" />
+                </section>
+                <section>
+                    <h3>Manage your dependencies</h3>
+                    <ul>
+                        <li class="fragment">Identify early</li>
+                        <li class="fragment">Work intelligently</li>
+                        <li class="fragment">Combine branches for development</li>
+                        <li class="fragment">&hellip;but submit to PR separately!</li>
+                    </ul>
+                </section>
+                <section>
+                    <h3 class="fragment">Be flexible with branches</h3>
+                    <strong class="fragment">Each PR must contain only one branch</strong>
+                    <em class="fragment">but&hellip;</em>
+                    <p class="fragment">Use as many branches as you need to get the work done!</p>
+                </section>
+                <section>
+                    <h3>Rewriting history</h3>
+                    <p class="fragment">Never <span class="fragment">ever ever ever ever</span>
+                        <span class="fragment">ever ever ever ever ever</span> 
+                        <span class="fragment">ever ever ever ever ever</span> 
+                        <span class="fragment">ever ever ever ever ever</span> 
+                        <span class="fragment">ever ever ever ever ever</span> 
+                        <span class="fragment">ever ever ever ever ever</span> 
+                        <span class="fragment">ever ever ever ever ever</span> 
+                        <span class="fragment">ever ever ever ever ever</span> 
+                        <span class="fragment">ever ever ever ever ever</span> 
+                        <strong class="fragment">rewrite history.</strong>
+                        </p>
+
+                    <strong class="fragment">Once something is pushed on to master, its a part of history forever</strong>
+                </section>
+                <section>
+                    <h3>Don't be scared!</h3>
+                    <img class="fragment" style="width: 70%" src="http://www.likecool.com/Gear/Pic/Fearless/big/Fearless.jpg" />
+                    <p class="fragment">With the exception of rewriting history, it's very hard to irreversibly cock it up.</p>
+                </section>
+            </section>
+            <section data-background-size="contain" data-background-image="http://m.memegen.com/wsyb2z.jpg">
+            </section>
+        </div>
+    </div>  
+    <script src="node_modules/reveal/index.js"></script>
+    <script>
+        Reveal.initialize({
+            progress: false,
+            help: false,
+            transition: 'convex'
+        });
+    </script>  
+</body>
+</html>

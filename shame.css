@@ -1,0 +1,41 @@
+.git-logo {
+    width: 50%;
+    margin-top: 5rem !important;
+}
+
+.reveal ul:not(.with-blobs) {
+    list-style-type: none !important;
+}
+
+.reveal .term-list ul {
+    margin: 3rem;
+}
+
+.reveal ul li {
+    margin: 1rem;
+}
+
+.flex {
+    display: flex;
+    justify-content: space-between;
+}
+
+.flex.space-around {
+    justify-content: space-around;
+}
+
+.reveal hr {
+    margin: 2rem 0;
+}
+
+.golden-rule {
+    font-size: 6rem !important;
+}
+.reveal code {
+    text-align: left;
+}
+
+.pr-images img {
+    width: 30%;
+    height: 100%;
+}
